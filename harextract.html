@@ -285,9 +285,9 @@ function buildZIP (ents, data) {
                 filepath = filepath.substring(1);
             let encoding = data[ent.id].response.content.encoding;
             let mimeType = data[ent.id].reponse.content.mimeType;
-            if (encoding = 'base64')
+            if (encoding == 'base64')
                 zip.file(filepath, data[ent.id].response.content.text, { base64: true });
-            else if (mimeType = 'image/svg+xmlk'){
+            else if (mimeType == 'image/svg+xml'){
                 let svgText = data[ent.id].response.content.text.replace(/\"/g, '"')
                 zip.file(filepath, svgText)
             }
