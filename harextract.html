@@ -177,7 +177,7 @@ function loadHARJSON (har) {
         harent.pathcomps = fullpath; // .path string will be set below
         if (!ent.response.content.text)
             harent.error = 'No content.';
-        else if (ent.response.content.encoding != 'base64')
+        else if (ent.response.content.encoding != 'base64' || ent.response.content.mimeType != 'image/svg+xml')
             harent.error = "Can't decode.";
         if (harent.error) {
             console.log(`harextract: skipped ${harent.name} (${id}): ${harent.error}`);
