@@ -177,7 +177,7 @@ function loadHARJSON (har) {
         harent.pathcomps = fullpath; // .path string will be set below
         if (!ent.response.content.text)
             harent.error = 'No content.';
-        else if (ent.response.content.encoding = 'base64' || ent.response.content.mimeType = 'image/svg+xml')
+        else if (ent.response.content.encoding === 'base64' || ent.response.content.mimeType === 'image/svg+xml')
             commonpath = fullpath.slice(0, [...fullpath,null].findIndex((p, n) => p !== (commonpath||fullpath)[n])); // ;)
             harents.push(harent); // note: we can now guarantee that if harents has items, commonpath is set.
         else 
