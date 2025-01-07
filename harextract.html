@@ -283,11 +283,9 @@ function buildZIP (ents, data) {
             let filepath = `${ent.path}/${ent.name}`;
             if (filepath.startsWith('/'))
                 filepath = filepath.substring(1);
-            let encoding = data[ent.id].response.content.encoding;
-            let mimeType = data[ent.id].reponse.content.mimeType;
-            if (encoding == 'base64')
+            if (data[ent.id].response.content.encoding == 'base64')
                 zip.file(filepath, data[ent.id].response.content.text, { base64: true });
-            else if (mimeType == 'image/svg+xml'){
+            else if (data[ent.id].response.content.mimeType == 'image/svg+xml'){
                 let svgText = data[ent.id].response.content.text.replace(/\"/g, '"')
                 zip.file(filepath, svgText)
             }
