@@ -279,15 +279,15 @@ function buildZIP (ents, data) {
             if (filepath.startsWith('/'))
                 filepath = filepath.substring(1);
             let encoding = data[ent.id].response.content.encoding;
+            let mimeType = data[ent.id].reponse.content.mimeType;
             if (encoding = 'base64')
                 zip.file(filepath, data[ent.id].response.content.text, { base64: true });
-            if (encoding != 'base64')
-                let svg = data[ent.id].response.content.mimeType;
-                if (svg = 'image/svg+xml')
-                    let svgText = data[ent.id].response.content.text.replace(/\"/g, '"')
-                    zip.file(filepath, svgText);
-                else
-                    throw new Error(`Unsupported encoding for ${ent.name} (${ent.id}): ${encoding}`);
+            else if (mimeType = 'image/svg+xmlk'){
+                let svgText = data[ent.id].response.content.text.replace(/\"/g, '"')
+                zip.file(filepath, svgText)
+            }
+            else
+                throw new Error(`Unsupported encoding for ${ent.name} (${ent.id}): ${encoding}`)
         } catch (e) {
             console.log(e);
         }
