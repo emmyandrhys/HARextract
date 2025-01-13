@@ -178,7 +178,7 @@ function loadHARJSON (har) {
         if (!ent.response.content.text) {
             harent.error = 'No content.';
         }
-        else if (ent.response.content.encoding == 'base64' || ent.response.content.mimeType == 'image/svg+xml') {
+        else if (ent.response.content.encoding == 'base64' || ent.response.content.mimeType == 'image/svg+xml' || ent.response.content.mimeType == 'application/xhtml+xml') {
             commonpath = fullpath.slice(0, [...fullpath,null].findIndex((p, n) => p !== (commonpath||fullpath)[n])); // ;)
             harents.push(harent); // note: we can now guarantee that if harents has items, commonpath is set.
         }
@@ -289,6 +289,10 @@ function buildZIP (ents, data) {
                 let svgText = data[ent.id].response.content.text.replace(/\"/g, '"')
                 zip.file(filepath, svgText)
             }
+                else if (data[ent.id].response.content.mimeType == 'application/xhtml+xml'){
+                    let xhtmlText = data.[ent.id].response.content.text.replace(/\"/g, '"')
+                    zip.file(filepath, xhtmlText)
+                }
             else
                 throw new Error(`Unsupported encoding for ${ent.name} (${ent.id}): ${encoding}`)
         } catch (e) {
