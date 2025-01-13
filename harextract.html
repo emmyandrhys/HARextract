@@ -290,7 +290,7 @@ function buildZIP (ents, data) {
                 zip.file(filepath, svgText)
             }
             else if (data[ent.id].response.content.mimeType == 'application/xhtml+xml'){
-                let xhtmlText = data.[ent.id].response.content.text.replace(/\"/g, '"')
+                let xhtmlText = data[ent.id].response.content.text.replace(/\"/g, '"')
                 zip.file(filepath, xhtmlText)
             }
             else
