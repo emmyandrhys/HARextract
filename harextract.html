@@ -289,10 +289,10 @@ function buildZIP (ents, data) {
                 let svgText = data[ent.id].response.content.text.replace(/\"/g, '"')
                 zip.file(filepath, svgText)
             }
-                else if (data[ent.id].response.content.mimeType == 'application/xhtml+xml'){
-                    let xhtmlText = data.[ent.id].response.content.text.replace(/\"/g, '"')
-                    zip.file(filepath, xhtmlText)
-                }
+            else if (data[ent.id].response.content.mimeType == 'application/xhtml+xml'){
+                let xhtmlText = data.[ent.id].response.content.text.replace(/\"/g, '"')
+                zip.file(filepath, xhtmlText)
+            }
             else
                 throw new Error(`Unsupported encoding for ${ent.name} (${ent.id}): ${encoding}`)
         } catch (e) {
